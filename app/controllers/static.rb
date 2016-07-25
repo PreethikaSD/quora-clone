@@ -23,12 +23,12 @@ post '/signup' do
 end
 
 post '/login' do
-	user = User.find_by(email: params[:user][:email])
-	if user && user.authenticate(params[:user][:password])
+	user = User.authenticate(params[:user][:email], params[:user][:password])
+	if user != nil 
 		session[:id] = user.id
 		redirect '/profile'
 	else
-		session[:errors] = "Invalid username or password"
+		session[:errors] = "Invalid email or password"
 		redirect '/'
 	end
 end

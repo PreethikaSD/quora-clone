@@ -5,11 +5,12 @@ class User < ActiveRecord::Base
 	validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 	validates :name, presence: true, length: {maximum: 8}, uniqueness: true
 
-	def self.authenticate(password)
-		if self.authenticate(params[:user][:password])
-			return self
-		else
-			return nil
+	def self.authenticate(email, password)
+		valid_user = self.find_by(email: email)
+		if valid_user != nil and valid_user.authenticate(password)
+			valid_user
+		else 
+			valid_user = nil
 		end
 	end
 end
