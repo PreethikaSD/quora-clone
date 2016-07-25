@@ -1,2 +1,29 @@
-<h1>Hello World</h1>
-<p>See Me in views/static/index.html.erb</p>
+<h1>Quora: The quest for Knowledge</h1>
+<h2>Sign up for an account</h2>
+
+<div id='signup'>
+  	<form  action="/signup" method="post">
+		Name:
+			<input type="text" name="user[name]" placeholder="name"><br>
+		Email:
+			<input type="text" name="user[email]" placeholder="preethika@gmail.com"><br>
+		Password:
+			<input type="password" name="user[password]" placeholder="Password"><br>
+		Password Confirmation:	
+			<input type="password" name="user[password_confirmation]"><br>		
+			<input type="submit" value="Signup" class="submit">
+	</form>
+<% if @messages %>
+	<%= @messages %>
+<% end %>
+</div>
+<h2>Login</h2>
+<div id='login'>
+  	<form  action="/login" method="post">
+		Email:
+			<input type="text" name="user[email]" placeholder="preethika@gmail.com"><br>
+		Password:
+			<input type="password" name="user[password]" placeholder="Password"><br>
+		<input type="submit" value="Login" class="submit">
+</div>
+

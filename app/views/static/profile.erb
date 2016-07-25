@@ -1,0 +1,9 @@
+<h2> My profile page </h2>
+<% if logged_in? %>
+	<h2> Welcome <%=current_user.name%></h2>
+<% end %>	
+<div>
+ 	<form  action="/logout" method="post">
+		<input type="submit" value="Logout" class="submit">
+	</form>
+</div>
