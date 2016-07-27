@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 	# This is Sinatra! Remember to create a migration!
+	has_many :questions
+	has_many :answers
+	has_many :answer_votes
+	has_many :question_votes
 	has_secure_password
 	validates :email, presence: true, length: { minimum: 7 }, uniqueness: true
 	validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/

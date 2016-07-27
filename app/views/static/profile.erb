@@ -2,6 +2,20 @@
 <% if logged_in? %>
 	<h2> Welcome <%=current_user.name%></h2>
 <% end %>	
+
+<div>
+ 	<form  action="/profile" method="post">
+ 		<input type="text" name="question[text]" placeholder="Write your question here"><br>
+		<input type="submit" value="Ask a question" class="submit">
+	</form>
+</div>
+
+<% if current_user and current_user.questions %>
+	<% current_user.questions.each do |question| %>
+		<%=question.text %>
+	<% end %>	
+<% end %>	
+
 <div>
  	<form  action="/logout" method="post">
 		<input type="submit" value="Logout" class="submit">

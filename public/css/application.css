@@ -1,10 +1,35 @@
-#signup {
+.header {
+	text-align: center;
 }
 
- h2{
- 	text-align: left;
- }
+.form_question{
+	text-align: center;
+	margin: auto;
+}
 
- #login {
- 	display: inline
- }
+.question_text{
+	height: 30px;
+	width: 300px	
+}
+
+.static{
+	margin-left: 35px;
+}
+
+#edit{
+	display: inline;
+}
+
+#answers{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#inline{
+	display: inline;
+}
+
+li{
+	margin-top: 8px;
+}
+li

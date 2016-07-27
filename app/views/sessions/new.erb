@@ -1,0 +1,21 @@
+<div id="login_modal">
+<%if @message  %>
+	<%= @message %>
+<% end %>
+<h1>Login</h1>
+<form method="post" action="/sessions" >
+	Email:
+		<input type="text" name="session[email]" placeholder="preethika@gmail.com"><br>
+	Password:
+		<input type="password" name="session[password]" placeholder="Password"><br>
+	<input type="submit" value="Login" class="submit">
+</form>
+<h1>Signup</h1>
+<form  action="/signup" method="post">
+	<input type="text" name="session[name]" placeholder="name"><br>
+	<input type="text" name="session[email]" placeholder="preethika@gmail.com"><br>
+	<input type="password" name="session[password]" placeholder="Password"><br>
+	<input type="password" name="session[password_confirmation]" placeholder="Password confirmation"><br>		
+	<input type="submit" value="Signup" class="submit">
+</form>
+</div>

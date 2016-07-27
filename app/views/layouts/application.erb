@@ -1,9 +1,24 @@
 <html>
 	<head>
 	<title>Quora</title>
-	<link rel="stylesheet" type="text/css" href="css/application.css">
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/application.css">
+    <script type="text/javascript" src="/js/jquery.simplemodal.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>	
+    <script type="text/javascript" src="/js/osx.js"></script>	
+    <script type="text/javascript" src="/js/application.js"></script>	
 	</head>
 	<body>
+		<div id="navbar">
+			<div>
+				<a href="/"><h2 class="header">Quora: The quest for knowledge</h2></a>
+			</div>
+			<div>
+				<% if logged_in? %>
+					<h3 class="header">Welcome <%= current_user.name %></h3>
+				<% end %>
+			</div>
+		</div>	
 		<%= yield %>
 	</body>
 </html>

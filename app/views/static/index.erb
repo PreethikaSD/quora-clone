@@ -1,29 +1,52 @@
-<h1>Quora: The quest for Knowledge</h1>
-<h2>Sign up for an account</h2>
-
-<div id='signup'>
-  	<form  action="/signup" method="post">
-		Name:
-			<input type="text" name="user[name]" placeholder="name"><br>
-		Email:
-			<input type="text" name="user[email]" placeholder="preethika@gmail.com"><br>
-		Password:
-			<input type="password" name="user[password]" placeholder="Password"><br>
-		Password Confirmation:	
-			<input type="password" name="user[password_confirmation]"><br>		
-			<input type="submit" value="Signup" class="submit">
+<div>
+  	<form  action="/questions" method="post" class="form_question">
+  		<input type="text" name="question[text]" class="question_text">
+		<input type="submit" value="Ask a Question" id="ask_question">
 	</form>
-<% if @messages %>
-	<%= @messages %>
-<% end %>
+	<button id="test">Test</button>
 </div>
-<h2>Login</h2>
-<div id='login'>
-  	<form  action="/login" method="post">
+<div class="static">
+<ul>
+	<% @questions.each do |question| %>
+		<li><h3 id="inline"><a href="/questions/<%=question.id%>"><%= question.text %></a></h3>
+		<p id="edit"><a href="/questions/<%=question.id%>/edit">Edit</a></p><br>
+		<% if question.answers %>
+			<h4 id="answers">Answers:</h4>
+				<% question.answers.each do |answer| %>
+				<p><li><%= answer.text %></p></li>
+			<% end %>
+		<% end %><hr> 
+	<% end %>
+	</li></p>
+</ul>
+<% if logged_in? %>
+	<div>
+	 	<form action="/logout" method="post">
+			<input type="submit" value="Logout" class="submit">
+		</form>
+	</div>
+<%end%>
+</div>
+
+<div id="login_modal" style="display: none;">
+	<%if @message  %>
+		<%= @message %>
+	<% end %>
+	<h1>Login</h1>
+	<form method="post" action="/sessions" >
 		Email:
-			<input type="text" name="user[email]" placeholder="preethika@gmail.com"><br>
+			<input type="text" name="session[email]" placeholder="preethika@gmail.com"><br>
 		Password:
-			<input type="password" name="user[password]" placeholder="Password"><br>
+			<input type="password" name="session[password]" placeholder="Password"><br>
 		<input type="submit" value="Login" class="submit">
+	</form>
+	<h1>Signup</h1>
+	<form  action="/signup" method="post">
+		<input type="text" name="session[name]" placeholder="name"><br>
+		<input type="text" name="session[email]" placeholder="preethika@gmail.com"><br>
+		<input type="password" name="session[password]" placeholder="Password"><br>
+		<input type="password" name="session[password_confirmation]" placeholder="Password confirmation"><br>		
+		<input type="submit" value="Signup" class="submit">
+	</form>
 </div>
 

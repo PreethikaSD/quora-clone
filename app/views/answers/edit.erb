@@ -1,0 +1,7 @@
+<h1>Edit Answer</h1>  	
+
+  	<form  action="/answers/<%=@answer.id%>" method="post">
+  		<input type="hidden" name="_method" value="put">
+  		<input type="text" name="answer[text]" value="<%= @answer.text %>">
+		<input type="submit" value="Edit">
+	</form>

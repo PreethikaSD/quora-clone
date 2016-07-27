@@ -1,0 +1,58 @@
+<div>
+<% if @message %>
+	<%= @message %>
+<% end %>
+<a href="/">Go to Questions</a>
+<h2><%= @question.text %></h2>
+<a href="/questions/<%=@question.id%>/edit"><button>Edit Question</button></a>
+
+<form method="post" action="/questions/<%= @question.id %>/upvote">
+	<input class='btn btn-primary' name="upvote" type="submit" value="upvote">
+</form>
+<form method="post" action="/questions/<%= @question.id %>/downvote">
+	<input class='btn btn-primary' name="downvote" type="submit" value="downvote">
+</form>
+
+<h4><%= @question.count_upvotes %> upvotes</h4>
+<h4><%= @question.count_downvotes %> downvotes</h4>
+
+<form method="post" action="/questions/<%= @question.id %>">
+	<input type="hidden" name="_method" value="delete">
+<input type="submit" value="Delete"> (<b>ATTENTION: This action is not reversible</b>)
+</form>
+
+
+<form method="post" action="/answers">
+	<input type="text" name="answer[text]">
+	<input type="hidden" name="question[id]" value="<%=@question.id%>">
+	<input type="submit" value="Post your Answer">
+</form>
+
+<ul>
+	<h3>Answers:</h3>
+	<% @question.answers.each do |answer| %>
+		<li><%= answer.text %>
+		<a href="/answers/<%=answer.id%>/edit">Edit</a>
+
+		<form method="post" action="/answers/<%= answer.id %>/upvote">
+			<input class='btn btn-primary' name="upvote" type="submit" value="upvote">
+		</form>
+
+		<form method="post" action="/answers/<%= answer.id %>/downvote">
+			<input class='btn btn-primary' name="downvote" type="submit" value="downvote">
+		</form>		
+		<h4><%= answer.count_upvotes %> upvotes</h4>
+		<h4><%= answer.count_downvotes %> downvotes</h4>
+
+		<form method="post" action="/answers/<%= answer.id %>">
+			<input type="hidden" name="_method" value="delete">
+			<input type="submit" value="Delete"> </li>
+		</form>
+	<% end %>
+</ul>
+<div>
+ 	<form  action="/logout" method="post">
+		<input type="submit" value="Logout" class="submit">
+	</form>
+</div>
+</div>
