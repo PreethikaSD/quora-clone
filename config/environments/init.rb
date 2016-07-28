@@ -17,6 +17,9 @@ require 'logger'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
+require 'will_paginate'
+require 'will_paginate/active_record'
+
 	# embedded ruby
 require 'erb'
 require 'uri'

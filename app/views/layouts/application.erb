@@ -2,23 +2,38 @@
 	<head>
 	<title>Quora</title>
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="../css/application.css">
+	<link rel="stylesheet" type="text/css" href="/css/application.css">
     <script type="text/javascript" src="/js/jquery.simplemodal.js"></script>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>	
     <script type="text/javascript" src="/js/osx.js"></script>	
     <script type="text/javascript" src="/js/application.js"></script>	
 	</head>
 	<body>
-		<div id="navbar">
+		<div id="navbar-container">
+			<div id="navbar-logo"><a href="/"><h2>Quora</h2></a>
+			</div>
 			<div>
-				<a href="/"><h2 class="header">Quora: The quest for knowledge</h2></a>
+			  	<form  action="/questions" method="post" id="navbar-question">
+			  		<input type="text" name="question[text]" placeholder="Ask a Question" class="question_text">
+					<input type="submit" value="Submit" name="navbar-submit">
+				</form>				
 			</div>
 			<div>
 				<% if logged_in? %>
-					<h3 class="header">Welcome <%= current_user.name %></h3>
+					<div id="navbar-name">Welcome <%= current_user.name %>
+						<a href="/profile"><button>Profile</button></a>
+						<form action="/logout" method="post">
+							<input type="submit" value="Logout" class="submit" id="logout-button">
+						</form>
+					</div>
+				<% else %>
+					<div id="navbar-name"><a href="sessions/new"><button>Login</button></a>
+					</div>	
 				<% end %>
 			</div>
-		</div>	
+		</div>
+		<div id="main-container">	
 		<%= yield %>
+		</div>
 	</body>
 </html>

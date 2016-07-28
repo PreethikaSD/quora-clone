@@ -1,0 +1,6 @@
+<p>Tag: <%= @tag.content %></p>
+<% @questions.each do |question| %>
+	<h3><a href="/questions/<%=question.id%>"><%= question.text %></a></h3>
+<% end %>
+
+<div><a href="/">Go to Questions</a></div>

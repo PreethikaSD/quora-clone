@@ -1,9 +1,18 @@
 <h1>Edit Question</h1>  	
-
-  	<form  action="/questions/<%=@question.id%>" method="post">
+<div>
+  	<form  action="/questions/<%=@question.id%>" method="post" id="form-edit">
   		<input type="hidden" name="_method" value="put">
   		<input type="text" name="question[text]" value="<%= @question.text %>">
 		<input type="submit" value="Edit">
 	</form>
+
+	<form method="post" action="/questions/<%= @question.id %>" id="form-delete">
+		<input type="hidden" name="_method" value="delete">
+		<input type="submit" value="Delete"> 
+	</form>
+	<div class="clearfix"></div>
+</div>
+<div><a href="/">Go to Questions</a></div>
+
 
 	

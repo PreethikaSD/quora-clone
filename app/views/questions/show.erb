@@ -1,58 +1,89 @@
-<div>
+
 <% if @message %>
 	<%= @message %>
 <% end %>
-<a href="/">Go to Questions</a>
-<h2><%= @question.text %></h2>
-<a href="/questions/<%=@question.id%>/edit"><button>Edit Question</button></a>
+<div>
+	<form  action="/questions/<%=@question.id%>/tags" method="post" >
+		<input type="text" name="tag[content]" placeholder="Add a tag">
+		<input type="submit" value="Submit">
+	</form>				
+</div>
 
-<form method="post" action="/questions/<%= @question.id %>/upvote">
-	<input class='btn btn-primary' name="upvote" type="submit" value="upvote">
-</form>
-<form method="post" action="/questions/<%= @question.id %>/downvote">
-	<input class='btn btn-primary' name="downvote" type="submit" value="downvote">
-</form>
+<h2 class="inline"><%= @question.text %></h2>
 
-<h4><%= @question.count_upvotes %> upvotes</h4>
-<h4><%= @question.count_downvotes %> downvotes</h4>
+<p class="inline"><a href="/questions/<%=@question.id%>/edit"><button>Edit Question</button></a></p>
 
-<form method="post" action="/questions/<%= @question.id %>">
+<form method="post" action="/questions/<%= @question.id %>" class="inline">
 	<input type="hidden" name="_method" value="delete">
-<input type="submit" value="Delete"> (<b>ATTENTION: This action is not reversible</b>)
+<input type="submit" value="Delete"> 
 </form>
 
 
-<form method="post" action="/answers">
-	<input type="text" name="answer[text]">
-	<input type="hidden" name="question[id]" value="<%=@question.id%>">
-	<input type="submit" value="Post your Answer">
-</form>
+<div>
+<%if logged_in? and current_user %>
+	<form method="post" action="/questions/<%= @question.id %>/upvote" class="upvote-button">
+		<input class='btn btn-primary inline' name="upvote" type="submit" value="upvote | <%=@question.count_upvotes%>">
+	</form>
 
+	<form method="post" action="/questions/<%= @question.id %>/downvote" class="downvote-button">
+		<input class='btn btn-primary inline' name="downvote" type="submit" value="downvote | <%=@question.count_downvotes%>">
+	</form>
+<%else%>	
+	<button class="test">upvote</button>
+	<button class="test">downvote</button>
+<%end%>	
+</div>
+<div class="clearfix"></div>
+<div>
+	<form method="post" action="/answers">
+		<input type="text" name="answer[text]">
+		<input type="hidden" name="question[id]" value="<%=@question.id%>">
+		<input type="submit" value="Post your Answer">
+	</form>
+</div>
 <ul>
 	<h3>Answers:</h3>
 	<% @question.answers.each do |answer| %>
-		<li><%= answer.text %>
-		<a href="/answers/<%=answer.id%>/edit">Edit</a>
+		<li id="li-container">
+			<div><%= answer.text %>
+				<a href="/answers/<%=answer.id%>/edit"><button>Edit Answer</button></a>
+				<form method="post" action="/answers/<%= answer.id %>" class="inline">
+					<input type="hidden" name="_method" value="delete">
+					<input type="submit" value="Delete"> 
+				</form>
+			</div>
+			<div>
+				<form method="post" action="/answers/<%= answer.id %>/upvote" class="upvote-button">
+					<input class='btn btn-primary' name="upvote" type="submit" value="upvote | <%=answer.count_upvotes%>">
+				</form>
 
-		<form method="post" action="/answers/<%= answer.id %>/upvote">
-			<input class='btn btn-primary' name="upvote" type="submit" value="upvote">
-		</form>
-
-		<form method="post" action="/answers/<%= answer.id %>/downvote">
-			<input class='btn btn-primary' name="downvote" type="submit" value="downvote">
-		</form>		
-		<h4><%= answer.count_upvotes %> upvotes</h4>
-		<h4><%= answer.count_downvotes %> downvotes</h4>
-
-		<form method="post" action="/answers/<%= answer.id %>">
-			<input type="hidden" name="_method" value="delete">
-			<input type="submit" value="Delete"> </li>
-		</form>
+				<form method="post" action="/answers/<%= answer.id %>/downvote" class="downvote-button">
+					<input class='btn btn-primary' name="downvote" type="submit" value="downvote | <%=answer.count_downvotes%>">
+				</form>
+			</div>
+		</li>	
 	<% end %>
 </ul>
-<div>
- 	<form  action="/logout" method="post">
-		<input type="submit" value="Logout" class="submit">
+<div class="clearfix"></div>
+<div id="login_modal" style="display: none;">
+	<%if @message  %>
+		<%= @message %>
+	<% end %>
+	<h1>Login</h1>
+	<form method="post" action="/sessions" >
+		Email:
+			<input type="text" name="session[email]" placeholder="preethika@gmail.com"><br>
+		Password:
+			<input type="password" name="session[password]" placeholder="Password"><br>
+		<input type="submit" value="Login" class="submit">
+	</form>
+	<h1>Signup</h1>
+	<form  action="/signup" method="post">
+		<input type="text" name="session[name]" placeholder="name"><br>
+		<input type="text" name="session[email]" placeholder="preethika@gmail.com"><br>
+		<input type="password" name="session[password]" placeholder="Password"><br>
+		<input type="password" name="session[password_confirmation]" placeholder="Password confirmation"><br>		
+		<input type="submit" value="Signup" class="submit">
 	</form>
 </div>
-</div>
+<div><a href="/">Go to Questions</a></div>

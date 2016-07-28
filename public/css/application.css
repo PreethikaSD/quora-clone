@@ -1,5 +1,20 @@
-.header {
-	text-align: center;
+body{
+	margin: 0;
+}
+
+#navbar-logo{
+	margin-left: 10px;
+	text-decoration: none;
+}
+
+a:-webkit-any-link {
+	text-decoration: none;
+}
+
+#navbar-container{
+	background-color: gray;
+	display: flex;
+	justify-content: space-between;
 }
 
 .form_question{
@@ -7,17 +22,49 @@
 	margin: auto;
 }
 
-.question_text{
+input.question_text {
 	height: 30px;
-	width: 300px	
+	width: 300px;
+	margin-top: 15px;	
+}
+
+input.[type="submit"]{
+	text-align: center;
+}
+
+#navbar-name{
+	margin-top: 25px;
+	margin-right: 10px; 
+}
+
+#main-container{
+	width: 70%;
+	margin: auto;
+}
+
+#answers{
+	background-color: #dbdbdb;
+	margin-left: 10px; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+ul li {
+	list-style: none;
+}
+
+#form-edit{
+	float: left;
+}
+
+#form-delete{
+	float: left;
+	margin-left: 5px;
+	margin-top: 1px;
 }
 
 .static{
 	margin-left: 35px;
-}
-
-#edit{
-	display: inline;
 }
 
 #answers{
@@ -25,11 +72,57 @@
 	margin-bottom: 10px;
 }
 
-#inline{
+.inline{
 	display: inline;
 }
 
 li{
 	margin-top: 8px;
 }
-li
+
+.clearfix {
+	clear: both;
+}
+
+.upvote-button{
+	float: right;
+	margin-bottom: 10px;
+}
+
+.btn{
+	float: right;
+}
+
+.show-vote{
+	float: right;
+}
+
+.count-upvote{
+	margin-bottom: 0px;
+}
+
+.count-downvote{
+	margin-top: 0px;
+}
+
+#li-container{
+	display: flex;
+	justify-content: space-between;
+	border-bottom-style: inset;
+}
+
+#logout-button{
+	color: red;
+	float: right;
+}
+
+#simplemodal-overlay {
+	background-color:#000;
+}
+
+#simplemodal-container {
+	background-color: white; border:8px solid #444; padding:12px;
+}
+ ul{
+ 	padding-left: 0;
+ }

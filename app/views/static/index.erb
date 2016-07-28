@@ -1,31 +1,19 @@
-<div>
-  	<form  action="/questions" method="post" class="form_question">
-  		<input type="text" name="question[text]" class="question_text">
-		<input type="submit" value="Ask a Question" id="ask_question">
-	</form>
-	<button id="test">Test</button>
-</div>
 <div class="static">
 <ul>
 	<% @questions.each do |question| %>
-		<li><h3 id="inline"><a href="/questions/<%=question.id%>"><%= question.text %></a></h3>
-		<p id="edit"><a href="/questions/<%=question.id%>/edit">Edit</a></p><br>
+		<li><h3 class="inline"><a href="/questions/<%=question.id%>"><%= question.text %></a></h3>
+		<p class="inline"><a href="/questions/<%=question.id%>/edit">Edit</a></p><br>
 		<% if question.answers %>
-			<h4 id="answers">Answers:</h4>
+			<h4>Answers:</h4>
 				<% question.answers.each do |answer| %>
-				<p><li><%= answer.text %></p></li>
+				<p>
+				<li><%= answer.text %></p></li>
 			<% end %>
 		<% end %><hr> 
 	<% end %>
 	</li></p>
 </ul>
-<% if logged_in? %>
-	<div>
-	 	<form action="/logout" method="post">
-			<input type="submit" value="Logout" class="submit">
-		</form>
-	</div>
-<%end%>
+<%= will_paginate @questions %>
 </div>
 
 <div id="login_modal" style="display: none;">

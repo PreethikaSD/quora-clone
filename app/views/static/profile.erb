@@ -1,23 +1,15 @@
-<h2> My profile page </h2>
-<% if logged_in? %>
-	<h2> Welcome <%=current_user.name%></h2>
-<% end %>	
-
-<div>
- 	<form  action="/profile" method="post">
- 		<input type="text" name="question[text]" placeholder="Write your question here"><br>
-		<input type="submit" value="Ask a question" class="submit">
-	</form>
-</div>
-
-<% if current_user and current_user.questions %>
-	<% current_user.questions.each do |question| %>
-		<%=question.text %>
-	<% end %>	
-<% end %>	
-
-<div>
- 	<form  action="/logout" method="post">
-		<input type="submit" value="Logout" class="submit">
-	</form>
-</div>
+<% if current_user %>
+	<ul>
+		<% current_user.questions.each do |question| %>
+			<li><h3 class="inline"><a href="/questions/<%=question.id%>"><%= question.text %></a></h3>
+			<p class="inline"><a href="/questions/<%=question.id%>/edit">Edit</a></p><br>
+			<% if question.answers %>
+				<h4>Answers:</h4>
+					<% question.answers.each do |answer| %>
+					<p><li><%= answer.text %></p></li>
+				<% end %>
+			<% end %><hr> 
+		<% end %>
+		</li></p>
+	</ul>
+<%end%>

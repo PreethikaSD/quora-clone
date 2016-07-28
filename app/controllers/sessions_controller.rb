@@ -10,7 +10,7 @@ post '/sessions' do #logging in
 		session[:id] = user.id
 		redirect to '/'
 	else
-		session[:errors] = "Invalid email or password"
+		@message = "Invalid email or password"
 		erb :'sessions/new'
 	end
 end
@@ -21,7 +21,7 @@ post '/signup' do
 	if user.valid?
 		redirect '/'
 	else
-		session[:errors] = user.errors.full_messages
+		@message = user.errors.full_messages
 		erb :'sessions/new'
 	end
 end
