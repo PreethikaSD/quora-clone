@@ -1,4 +1,3 @@
-require 'byebug'
 post '/answers'  do 
 	if logged_in? 
 		@answer = current_user.answers.create(question_id: params[:question][:id], text: params[:answer][:text])

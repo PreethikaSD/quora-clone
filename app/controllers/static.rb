@@ -1,4 +1,3 @@
-require 'byebug'
 enable :sessions
 
 get '/' do

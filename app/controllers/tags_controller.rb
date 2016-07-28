@@ -1,4 +1,3 @@
-require 'byebug'
 post '/questions/:id/tags' do 
 	@question = Question.find_by(id: params[:id])
 	tag = params[:tag][:content].split(",")
